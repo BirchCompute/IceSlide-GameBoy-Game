@@ -22,8 +22,8 @@ SECTION "Level data table", romx
 			dw TestTiles, TestTilesLen
 			dw TestMap, TestMapLen
 			dw BallTile, BallTileLen
-			db $80 ; Entrance_Y
-			db $80 ; Entrance_X
+			db $20 ; Entrance_Y
+			db $18 ; Entrance_X
 			dw LevelPlinko ; Next level
 
 SECTION "Level data", romx
@@ -136,4 +136,5 @@ SECTION "Level Functions ", romx
 			ld hl, _OAMRAM
 			ld [hli], a
 			ld [hl], b
+
 		ret
