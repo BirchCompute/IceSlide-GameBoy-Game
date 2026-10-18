@@ -26,7 +26,7 @@ SECTION "Header", ROM0[$100]
 				call Wait_vblank
 				call LCD_off
 			; Load the first level
-				ld hl, LevelPlinko
+				ld hl, LevelTest
 				ld a, l
 				ld [wCurrentLevel], a
 				ld a, h
