@@ -25,25 +25,40 @@ SECTION "Level data table", romx
 			db $20 ; Entrance_Y
 			db $18 ; Entrance_X
 			dw LevelPlinko ; Next level
+		LevelScroll::
+			dw ScrollTiles, ScrollTilesLen
+			dw ScrollMap, ScrollMapLen
+			dw BallTile, BallTileLen
+			db $20 ; Entrance_Y
+			db $18 ; Entrance_X
+			dw LevelPlinko ; Next level
 
 SECTION "Level data", romx
 	; level graphics
 
 	; Plinko
-		PlinkoTiles:: INCBIN "Art/PlinkoTiles.2bpp"
+		PlinkoTiles:: INCBIN "Art/Plinko/PlinkoTiles.2bpp"
 			PlinkoTilesEnd::
-		PlinkoMap:: INCBIN "Art/PlinkoMap.tilemap"
+		PlinkoMap:: INCBIN "Art/Plinko/PlinkoMap.tilemap"
 			PlinkoMapEnd::
 		def PlinkoTilesLen equ PlinkoTilesEnd-PlinkoTiles
 		def PlinkoMapLen equ PlinkoMapEnd-PlinkoMap
 
 	; Test
-		TestTiles:: INCBIN "Art/TestTiles.2bpp"
+		TestTiles:: INCBIN "Art/Test/TestTiles.2bpp"
 			TestTilesEnd::
-		TestMap:: INCBIN "Art/TestMap.tilemap"
+		TestMap:: INCBIN "Art/Test/TestMap.tilemap"
 			TestMapEnd::
 		def TestTilesLen equ TestTilesEnd-TestTiles
 		def TestMapLen equ TestMapEnd-TestMap
+
+	; Scroll
+		ScrollTiles:: INCBIN "Art/Scroll/ScrollTiles.2bpp"
+			ScrollTilesEnd::
+		ScrollMap:: INCBIN "Art/Scroll/ScrollMap.tilemap"
+			ScrollMapEnd::
+		def ScrollTilesLen equ ScrollTilesEnd-ScrollTiles
+		def ScrollMapLen equ ScrollMapEnd-ScrollMap
 
 	; object graphics
 		BallTile:: INCBIN "Art/BallTile.2bpp"
