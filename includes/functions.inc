@@ -156,7 +156,8 @@ SECTION "Func", romx
 	GetTileByPixel:
     	; Divide by 8
     	; Then multiply the Y position by 32.
-    		ld a, [_OAMRAM]
+			ld a, [$ff42] ;ld a, [_OAMRAM]
+			add $54
     		and a, %11111000
     		ld l, a
     		ld h, 0
@@ -164,7 +165,9 @@ SECTION "Func", romx
     		add hl, hl ; position * 16
     		add hl, hl ; position * 32
     	; Convert the X position to an offset.
-    		ld a, [_OAMRAM+1]
+    		
+    		ld a, [$ff43] ;ld a, [_OAMRAM+1]
+			add $54
     		srl a ; a / 2
     		srl a ; a / 4
     		srl a ; a / 8

@@ -149,7 +149,8 @@ SECTION "Level Functions ", romx
 			ld a, [hli]
 			ld b, [hl]
 			ld hl, _OAMRAM
+			;ld a, $54
 			ld [hli], a
-			ld [hl], b
+			ld [hl], a
 
 		ret

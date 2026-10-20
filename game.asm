@@ -32,6 +32,9 @@ SECTION "Header", ROM0[$100]
 				ld a, h
 				ld [wCurrentLevel+1], a
 				call ChangeLevel
+				ld a, $54
+				ld [$ff42], a
+				ld [$ff43], a
 
 		; Initialize global variables
 			xor a
@@ -117,7 +120,7 @@ SECTION "Game functions", romx
 							call ClearStatus
 							jp Main
 						.moveright
-							ld hl, _OAMRAM+1
+							ld hl, $FF43   ;_OAMRAM+1
 							inc [hl]
 							jp Main
 		.left
@@ -140,7 +143,7 @@ SECTION "Game functions", romx
 							call ClearStatus
 							jp Main
 						.moveleft
-							ld hl, _OAMRAM+1
+							ld hl, $FF43
 							dec [hl]
 							jp Main
 		;vertical
@@ -172,7 +175,7 @@ SECTION "Game functions", romx
 							call ClearStatus
 							jp Main
 						.moveup
-							ld hl, _OAMRAM
+							ld hl, $FF42
 							dec [hl]
 							jp Main
 		.down
@@ -196,7 +199,7 @@ SECTION "Game functions", romx
 								call ClearStatus
 								jp Main
 							.movedown
-								ld hl, _OAMRAM
+								ld hl, $FF42
 								inc [hl]
 								jp Main
 		.win
@@ -210,9 +213,11 @@ SECTION "Game functions", romx
 
 	On_Grid::
 		;If Z, then you're on the grid
+		ld a, [$ff42]
 		ld a, [_OAMRAM]
 		and %00000111
 		ret nz
+		ld a, [$ff43]
 		ld a, [_OAMRAM+1]
 		and %00000111
 		ret nz
